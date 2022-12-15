@@ -1,0 +1,31 @@
+﻿@model List<ScoreModel>
+@{
+    ViewData["Title"] = "Home Page";
+}
+<span class="badge badge-light">@Model</span>
+<vc:contact></vc:contact>
+
+<a asp-controller="Score" asp-action="Add">Add New Contact</a>
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+
+            <th>Name</th>
+            <th>Phone Number</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var scoreModel in Model)
+        {
+            <tr>
+                <td>@scoreModel.Date</td>
+                <td>@scoreModel.Score</td>
+                <td>
+                    <a asp-controller="Contact" asp-action="Edit" asp-route-id="@scoreModel.ScoreId">Edit</a>
+                    <a asp-controller="Contact" asp-action="Delete" asp-route-id="@scoreModel.ScoreId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
